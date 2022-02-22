@@ -2,8 +2,6 @@ import React from 'react';
 
 // Expresado como function stateless component
 const Header = (props) => {
-
-    console.log(props);
     const {tagline,year} = props;
 
     return(
@@ -31,7 +29,6 @@ class Header extends React.Component{
 
         return(
             <header className="top">
-                {console.log(this.props)}
                 <h1>Catch 
                     <span className="ofThe">
                         <span className="of">Of</span>
