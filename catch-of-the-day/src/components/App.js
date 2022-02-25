@@ -4,12 +4,30 @@ import Order from './Order';
 import Inventory from './Inventory';
 import sampleFishes from '../sample-fishes';
 import Fish from './Fish';
+import base from '../base';
 class App extends React.Component {
 
     // Creamos un estado default
     state = {
         fishes: {},
         order: {}
+    }
+
+    componentDidMount(){
+        console.log("montado");
+        // Obtengo la ruta de la store actual
+        const storeRoute = this.props.match.params.storeName;
+
+        // Le indico a firebase que sincronice el state de fishes con un nuevo state storeRoute/fishes
+        this.ref = base.syncState(`${storeRoute}/fishes`, {
+            context: this,
+            state: 'fishes'
+        })
+    }
+
+    // Prevenir memory leaks
+    componentWillUnmount(){
+        base.removeBinding(this.ref)
     }
 
     addFish = (fish) => {
