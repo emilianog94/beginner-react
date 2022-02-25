@@ -7,7 +7,7 @@ class Order extends React.Component{
         const fish = this.props.fishes[key];
         if(fish.status == "available") {
             return(
-                <li key={key}>{fish.name} - {this.props.order[key]}x {formatPrice(fish.price)} </li>
+                <li key={key}>{this.props.order[key]} lbs {fish.name} - {formatPrice(fish.price)} </li>
             )
         } else{
             return(
@@ -30,14 +30,14 @@ class Order extends React.Component{
 
     render(){
         return(
-            <div className="order">
-                <ul>
+            <div className="order-wrap">
+                <ul className="order">
                     {Object.keys(this.props.order).map(this.renderItems)}
                 </ul>
 
-                <p className="total">
+                <div className="total">
                     Total: {this.renderTotal()}
-                </p>
+                </div>
             </div>
         )
     }
