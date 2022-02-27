@@ -41,12 +41,21 @@ class App extends React.Component {
         base.removeBinding(this.ref)
     }
 
-    addFish = (fish) => {
+    addFish = fish => {
         const stateFishes = {...this.state.fishes};
         stateFishes[Date.now()] = fish;
 
         this.setState({
             // Acá le pasamos qué clave del objeto estado queremos updatear
+            fishes: stateFishes
+        })
+    }
+
+    editFish = (fish,index) => {
+        const stateFishes = {...this.state.fishes};
+        stateFishes[index] = fish;
+
+        this.setState({
             fishes: stateFishes
         })
     }
@@ -78,7 +87,7 @@ class App extends React.Component {
                     </ul>
                 </div>
                 <Order fishes={this.state.fishes} order={this.state.order} />
-                <Inventory addFish={this.addFish} loadSampleFishes={this.loadSampleFishes} />
+                <Inventory fishes={this.state.fishes} editFish={this.editFish} addFish={this.addFish} loadSampleFishes={this.loadSampleFishes} />
             </div>
         )
     }
