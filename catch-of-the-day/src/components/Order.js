@@ -5,6 +5,11 @@ class Order extends React.Component{
 
     renderItems = (key) => {
         const fish = this.props.fishes[key];
+
+        if( !fish ){
+            return null;
+        }
+
         if(fish.status == "available") {
             return(
                 <li key={key}>{this.props.order[key]} lbs {fish.name} - {formatPrice(fish.price)} </li>
@@ -20,6 +25,9 @@ class Order extends React.Component{
         const fishes = Object.keys(this.props.order);
         const precio = fishes.reduce( (total, key) => {
             const fish = this.props.fishes[key];
+            if(!fish) {
+                return null;
+            }
             const price = fish.price;
             const quantity =  this.props.order[key]
             fish.status === "available" ? total = total + ( quantity * price) : total

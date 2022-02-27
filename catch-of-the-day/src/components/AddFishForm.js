@@ -19,8 +19,6 @@ class AddFishForm extends React.Component {
             image: this.imageRef.current.value,
         }
 
-        // console.log("el pescado es");
-        // console.log(fish);
         this.props.addFish(fish);
         e.currentTarget.reset();
     }

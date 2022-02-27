@@ -14,15 +14,26 @@ class App extends React.Component {
     }
 
     componentDidMount(){
-        console.log("montado");
         // Obtengo la ruta de la store actual
         const storeRoute = this.props.match.params.storeName;
+        const orderStorageRef = localStorage.getItem(storeRoute);
+
+        if(orderStorageRef){
+            this.setState({
+                order: JSON.parse(orderStorageRef)
+            })
+        }
 
         // Le indico a firebase que sincronice el state de fishes con un nuevo state storeRoute/fishes
         this.ref = base.syncState(`${storeRoute}/fishes`, {
             context: this,
             state: 'fishes'
         })
+    }
+
+    componentDidUpdate(){
+        const order = this.state.order;
+        localStorage.setItem(this.props.match.params.storeName, JSON.stringify(order));
     }
 
     // Prevenir memory leaks
