@@ -12,7 +12,14 @@ class Order extends React.Component{
 
         if(fish.status == "available") {
             return(
-                <li key={key}>{this.props.order[key]} lbs {fish.name} - {formatPrice(fish.price)} </li>
+                <li key={key}>
+                    {this.props.order[key]} lbs {fish.name} - 
+                    {formatPrice(fish.price)}  
+                    <button onClick={() => {this.props.deleteOrderItem(key)}}>X</button>
+                </li>
+                
+
+
             )
         } else{
             return(
