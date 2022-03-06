@@ -1,7 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class EditFishForm extends React.Component{
 
+    static propTypes = {
+        fish: PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            image: PropTypes.string.isRequired,
+            desc: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+            status: PropTypes.string.isRequired
+        }),
+        index: PropTypes.string,
+        editFish: PropTypes.func
+    }
 
     handleChange = event => {
         // Utilizo sintaxis de ES6 para actualizar las key y valores sin necesidad de hardcodearlos
