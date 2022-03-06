@@ -5,6 +5,7 @@ import Inventory from './Inventory';
 import sampleFishes from '../sample-fishes';
 import Fish from './Fish';
 import base from '../base';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 class App extends React.Component {
 
     // Creamos un estado default
@@ -98,11 +99,14 @@ class App extends React.Component {
             <div className="catch-of-the-day">
                 <div className="menu">
                     <Header tagline="Fresh Seafood" year={1960}/>
-                    <ul className="fishes">
+                    <TransitionGroup component="ul" className="fishes">
                         {Object.keys(this.state.fishes).map(pescadoId => 
-                            <Fish details={this.state.fishes[pescadoId]} addToOrder={this.addToOrder} key={pescadoId} index={pescadoId} />
+                            // CSSTransition debe tener un Key porque sino no funciona el exit
+                            <CSSTransition classNames="menuitem" key={pescadoId} timeout={{enter:500,exit:500}}>
+                                <Fish details={this.state.fishes[pescadoId]} addToOrder={this.addToOrder} key={pescadoId} index={pescadoId} />
+                            </CSSTransition>
                         )}
-                    </ul>
+                    </TransitionGroup>
                 </div>
                 <Order fishes={this.state.fishes} order={this.state.order} deleteOrderItem={this.deleteOrderItem} />
                 <Inventory fishes={this.state.fishes} editFish={this.editFish} addFish={this.addFish} deleteFish={this.deleteFish} loadSampleFishes={this.loadSampleFishes} />

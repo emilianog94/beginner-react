@@ -33,3 +33,25 @@
     padding: 0 !important
 
 
+.menuitem-enter
+  transition all .5s ease
+  opacity: 0
+  transform translateY(-100%)
+  &.menuitem-enter-active
+    opacity: 1
+    transform translateY(0)
+
+.menuitem-exit
+  transition all .5s ease
+  transform translateY(0)
+  opacity 1
+  height 190px
+  margin-bottom 5px
+  &.menuitem-exit-active
+    transform translateY(-100%)
+    opacity 0
+    height 0
+    padding 0
+    margin-bottom 0px
+    border-bottom: 0px solid #000;
+    border-top: 0px solid #000;
