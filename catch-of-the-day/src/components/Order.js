@@ -17,7 +17,11 @@ class Order extends React.Component{
                     {/* li tomará la clase que le pasé arriba en css-transition para animarse */}
                     <li>
                         <span>
-                            <span>{this.props.order[key]}</span> 
+                            <TransitionGroup component="span" className="count">
+                                <CSSTransition classNames="count" key={this.props.order[key]} timeout={{enter: 1500,exit: 1500}}>
+                                    <span>{this.props.order[key]}</span> 
+                                </CSSTransition>
+                            </TransitionGroup>
                             lbs {fish.name} -&nbsp;
                             {formatPrice(fish.price)}  
                             <button onClick={() => {this.props.deleteOrderItem(key)}}>X</button>
@@ -59,7 +63,13 @@ class Order extends React.Component{
                 </TransitionGroup>
 
                 <div className="total">
-                    Total: {this.renderTotal()}
+                    <span>Total:
+                    <TransitionGroup component="span" className="totals">
+                        <CSSTransition classNames="totals" key={this.renderTotal()} timeout={{enter: 1000, exit: 1000}}>
+                            <span>{this.renderTotal()}</span>
+                        </CSSTransition>
+                    </TransitionGroup>
+                    </span>
                 </div>
             </div>
         )

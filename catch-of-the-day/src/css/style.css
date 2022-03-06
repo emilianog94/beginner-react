@@ -14,40 +14,71 @@
 .order-exit {
   transition: all 0.5s ease;
   transform: translateX(0%);
-  opacity: 1;
   max-height: 60px;
   padding: 2rem 0 !important;
 }
 .order-exit.order-exit-active {
-  transform: translateX(100%);
-  opacity: 0;
+  transform: translateX(120%);
   max-height: 0;
   padding: 0 !important;
 }
 .menuitem-enter {
   transition: all 0.5s ease;
-  opacity: 0;
   transform: translateY(-100%);
 }
 .menuitem-enter.menuitem-enter-active {
-  opacity: 1;
   transform: translateY(0);
 }
 .menuitem-exit {
   transition: all 0.5s ease;
   transform: translateY(0);
-  opacity: 1;
   height: 190px;
   margin-bottom: 5px;
 }
 .menuitem-exit.menuitem-exit-active {
   transform: translateY(-100%);
-  opacity: 0;
   height: 0;
   padding: 0;
   margin-bottom: 0px;
   border-bottom: 0px solid #000;
   border-top: 0px solid #000;
+}
+.count-enter {
+  transition: all 0.5s ease;
+  transform: translateY(100%);
+}
+.count-enter.count-enter-active {
+  transform: translateY(0);
+}
+.count-exit {
+  transition: all 0.5s ease;
+  transform: translateY(0);
+  position: absolute;
+  left: 0;
+}
+.count-exit.count-exit-active {
+  transform: translateY(-100%);
+}
+.totals-enter {
+  transition: all 0.5s ease;
+  transform: translateY(150%);
+}
+.totals-enter.totals-enter-active {
+  transform: translateY(0);
+}
+.totals-exit {
+  transition: all 0.5s ease;
+  transform: translateY(0);
+  position: absolute;
+  left: 0;
+}
+.totals-exit.totals-exit-active {
+  transform: translateY(-100%);
+}
+.totals {
+  position: relative;
+  display: block;
+  overflow: hidden;
 }
 @font-face {
   font-family: "haymakerregular";
