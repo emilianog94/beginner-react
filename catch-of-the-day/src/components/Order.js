@@ -1,5 +1,6 @@
 import React from 'react';
 import { formatPrice } from '../helpers';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class Order extends React.Component{
 
@@ -12,18 +13,25 @@ class Order extends React.Component{
 
         if(fish.status == "available") {
             return(
-                <li key={key}>
-                    {this.props.order[key]} lbs {fish.name} - 
-                    {formatPrice(fish.price)}  
-                    <button onClick={() => {this.props.deleteOrderItem(key)}}>X</button>
-                </li>
-                
+                <CSSTransition classNames="order" key={key} timeout={{enter: 500, exit: 500}}>
+                    {/* li tomará la clase que le pasé arriba en css-transition para animarse */}
+                    <li>
+                        <span>
+                            <span>{this.props.order[key]}</span> 
+                            lbs {fish.name} -&nbsp;
+                            {formatPrice(fish.price)}  
+                            <button onClick={() => {this.props.deleteOrderItem(key)}}>X</button>
+                        </span>
 
-
+                    </li>
+                </CSSTransition>
             )
-        } else{
+        } 
+        else{
             return(
-                <li key={key}>Sorry! the fish you previously picked ({fish.name}) is unavailable right now!</li>
+                <CSSTransition classNames="order" key={key} timeout={{enter: 2000, exit: 2000}}>
+                    <li key={key}>Sorry! the fish you previously picked ({fish.name}) is unavailable right now!</li>
+                </CSSTransition>
             )
         }
     }
@@ -46,9 +54,9 @@ class Order extends React.Component{
     render(){
         return(
             <div className="order-wrap">
-                <ul className="order">
+                <TransitionGroup component="ul" className="order">
                     {Object.keys(this.props.order).map(this.renderItems)}
-                </ul>
+                </TransitionGroup>
 
                 <div className="total">
                     Total: {this.renderTotal()}

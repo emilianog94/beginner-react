@@ -5,39 +5,31 @@
   appear Must set transitionAppear={true} on animation component
 */
 
+// Para que funcione, la segunda clase -active se carga en el DOM 0.1s después de la primera, sino ambas se dispararían a la vez y no habría transición alguna
+
 .order-enter
-  transform: translateX(-120%)
-  transition 0.5s
-  max-height: 0
-  padding 0 !important
+  transition all .5s ease
+  transform translateX(-100%)
+  opacity 0
+  max-height 0
+  padding 0 !important 
   &.order-enter-active
+    transform translateX(0%)
+    opacity 1
     max-height 60px
-    transform: translateX(0)
     padding 2rem 0 !important
 
+
 .order-exit
-  transition 0.5s
-  transform: translateX(0)
+  transition all .5s ease
+  transform translateX(0%)
+  opacity 1
+  max-height 60px
+  padding 2rem 0 !important
   &.order-exit-active
-    transform: translateX(120%)
-    padding: 0
+    transform translateX(100%)
+    opacity 0
+    max-height 0
+    padding: 0 !important
 
 
-.count-enter
-  background: red
-  transition .5s
-  transform translateY(100%)
-  &.count-enter-active
-    background: yellow
-    transform translateY(0)
-
-.count-exit
-  background: black
-  transform translateY(0)
-  transition .5s
-  position absolute
-  left 0
-  bottom 0
-  &.count-exit-active
-    background green
-    transform translateY(-100%) scale(3)
