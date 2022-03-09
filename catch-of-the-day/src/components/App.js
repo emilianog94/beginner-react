@@ -109,7 +109,7 @@ class App extends React.Component {
                     </TransitionGroup>
                 </div>
                 <Order fishes={this.state.fishes} order={this.state.order} deleteOrderItem={this.deleteOrderItem} />
-                <Inventory fishes={this.state.fishes} editFish={this.editFish} addFish={this.addFish} deleteFish={this.deleteFish} loadSampleFishes={this.loadSampleFishes} />
+                <Inventory storeId={this.props.match.params.storeName} fishes={this.state.fishes} editFish={this.editFish} addFish={this.addFish} deleteFish={this.deleteFish} loadSampleFishes={this.loadSampleFishes} />
             </div>
         )
     }
