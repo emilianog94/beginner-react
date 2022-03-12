@@ -43,12 +43,12 @@ class Inventory extends React.Component{
             // Base.post es para cargar datos en Firebase
             await base.post(`${this.props.storeId}/administrador`, {
                 // Le paso UID porque es el Unique Identifier de un usuario
-                data: authData.user.uid
+                data: authData.user?.uid || ""
             })
         }
 
         this.setState({
-            uid: authData.user.uid,
+            uid: authData.user?.uid || "",
             owner: store.administrador || authData.user.uid
         })
 
